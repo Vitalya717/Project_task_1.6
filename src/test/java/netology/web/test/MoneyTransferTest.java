@@ -68,6 +68,14 @@ class MoneyTransferTest {
                 () -> assertEquals(expectedBalanceSecondCard, actualBalanceForSecondCard));
     }
 
+    @Test
+    void shouldErrorMassage() {
+        int sum = generateValidAmount(secondCardBalance);
+        var thirdCardInfo = getThirdCardInfo();
+        var transMoney = dashboardPage.selectCardForTransfer(firstCardInfo);
+        dashboardPage = transMoney.toTransMoney(String.valueOf(sum), thirdCardInfo);
+        transMoney.findErrorMassage("Ошибка! Произошла ошибка");
 
+    }
 
 }
